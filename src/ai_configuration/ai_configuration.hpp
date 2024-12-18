@@ -8,7 +8,7 @@ class AI_Configuration {
 
 private:
 	void alterGeneByIndex(const int index, const double newValue);
-	void randomizeRandomGene(std::mt19937 &generator, const double weightSize);
+	void randomizeRandomGene(const std::mt19937 &generator, const double weightSize);
 	double getGeneValueByIndex(const int index) const;
 
 public:
@@ -38,12 +38,10 @@ public:
 
 	static const int sGenomeSize = 34;
 
-	AI_Configuration();
-		
-	void crossover(AI_Configuration &parent1, AI_Configuration &parent2);
-	void initialize(const double weightSize, std::mt19937 &generator);
+	void crossover(const AI_Configuration &parent1, const AI_Configuration &parent2);
+	void initialize(const double weightSize, const std::mt19937 &generator);
 	std::string displayConfig() const;
-	int applyMutation(const int mutationRate, const double weightSize, std::mt19937 &generator);
+	int applyMutation(const int mutationRate, const double weightSize, const std::mt19937 &generator);
 
 };
 

@@ -1,7 +1,7 @@
 #include "ai_configuration.hpp"
 #include <stdexcept>
 
-void AI_Configuration::initialize(const double weightSize, std::mt19937 &generator) {
+void AI_Configuration::initialize(const double weightSize, const std::mt19937 &generator) {
 
 	std::uniform_real_distribution<> distrLarge(-weightSize, weightSize);
     std::uniform_real_distribution<> distrSmall(-0.5, 5);
@@ -41,7 +41,7 @@ void AI_Configuration::initialize(const double weightSize, std::mt19937 &generat
 
 }
 
-void AI_Configuration::crossover(AI_Configuration &parent1, AI_Configuration &parent2) {
+void AI_Configuration::crossover(const AI_Configuration &parent1, const AI_Configuration &parent2) {
 
 	crackiness = (parent1.crackiness / 2.0 + parent2.crackiness / 2.0);
 	coveredHoles = (parent1.coveredHoles / 2.0 + parent2.coveredHoles / 2.0);
@@ -74,7 +74,7 @@ void AI_Configuration::crossover(AI_Configuration &parent1, AI_Configuration &pa
 	
 }
 
-int AI_Configuration::applyMutation(const int mutationRate, const double weightSize, std::mt19937 &generator) {
+int AI_Configuration::applyMutation(const int mutationRate, const double weightSize, const std::mt19937 &generator) {
 
 	if (rand() % 100 > mutationRate) return 0;
 
@@ -220,7 +220,7 @@ void AI_Configuration::alterGeneByIndex(const int index, const double newValue) 
 	
 }
 
-void AI_Configuration::randomizeRandomGene(std::mt19937 &generator, const double weightSize) {
+void AI_Configuration::randomizeRandomGene(const std::mt19937 &generator, const double weightSize) {
 
 	// Pick a random weight to mutate
 	int index = rand() % AI_Configuration::sGenomeSize;
